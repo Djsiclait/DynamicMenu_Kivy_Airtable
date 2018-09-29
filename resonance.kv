@@ -4,3 +4,75 @@ Resonance:
 
 <Resonance>:
 	orientation: "vertical"
+	canvas:
+		Color: 
+			rgba: 0.376, 0.420, 0.420, 0.9
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
+	GridLayout:
+		rows: 3	
+
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint_y: None
+			spacing : 10 
+			height: 60
+			canvas:
+				Color: 
+					rgba: 0, 0, 0, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+
+			BoxLayout:
+				size_hint_y: None
+				size_hint_x: None
+				spacing : 10 
+				height: 60 
+				width: 60
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						pos: self.pos
+						size: self.size
+						source: 'logo.jpg'
+
+			Label:
+				color: 1, 1, 1, 1
+				text: "Welcome to Resonance Manufacturing LTD --- Do Something Fucking Big"
+			
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint_y: None
+			spacing : 10 
+			height: 40
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+
+			Button: 
+				size_hint_y: None
+				size_hint_x: None
+				spacing : 10 
+				height: 30 
+				width: 200
+				canvas:
+					Color: 
+						rgba: 0.317, 0.8, 0.9, .5
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				text: "Fetch Updated Airtable Data"
+
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint_y: None
+			spacing : 10 
+			height: 40
+
