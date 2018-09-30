@@ -1,3 +1,4 @@
+import webbrowser
 import kivy
 kivy.require("1.10.0")
 
@@ -39,10 +40,13 @@ def format_airtable_data(num):
 		formated_data.orientation = "vertical"
 		formated_data.padding = 10
 		formated_data.spacing = 10
-		formated_data.add_widget(Label(text="Hello " + str(num),size_hint=(.7,.5)))
-		formated_data.add_widget(Button(text="Hello " + str(num),size_hint=(.7,.5)))
+		formated_data.add_widget(Label(text="Menu option " + str(num),size_hint=(.7,.5)))
+		formated_data.add_widget(Button(text="Link " + str(num),size_hint=(.7,.5), on_press=open_link))
 
 		return formated_data
+
+def open_link(instance):
+	webbrowser.open("http://kivy.org/")
 		
 
 # Class containing all objects and functions of the UI
