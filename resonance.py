@@ -5,23 +5,41 @@ import kivy.uix
 from kivy.app import App 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label 
+from kivy.uix.button import Button
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.tabbedpanel import TabbedPanelHeader 
+from kivy.uix.tabbedpanel import TabbedPanelItem
 from kivy.properties import ObjectProperty
 
 # Proxy class to validate the existance the dynamic menu with both .py and .kv files
 # No code is necessary within this context
 class Sanbox(BoxLayout):
 	pass
-	
+
 # TabbedPanel to organized all airtable data in an organized page format
 # Will remain empty until updated
 airtable_content = TabbedPanel()
 
 def fill_menu_with_data():
 	airtable_content.clear_tabs()
+	airtable_content.do_default_tab = False
+	airtable_content.background_color = (0, 0, 1, .5) #50% translucent red
+	airtable_content.minimum_height = 100
+
 	for i in range(1, 5):
-		tab = TabbedPanelHeader(text='Tab' + str(i))
+		tab = TabbedPanelHeader(text='Tab ' + str(i))
+
+		test = BoxLayout()
+		test.orientation = "vertical"
+		#test.minimum_height = 100
+		test.padding = 10
+		test.spacing = 10
+		test.add_widget(Label(text="Hello " + str(i),size_hint=(.5,.5)))
+		test.add_widget(Button(text="Hello " + str(i),size_hint=(.5,.5)))
+		
+		tab.content = test
+		tab.content.minimum_height= 100
+		
 		airtable_content.add_widget(tab)
 
 # Class containing all objects and functions of the UI
@@ -29,6 +47,11 @@ class Resonance(BoxLayout):
 	sandbox = ObjectProperty() # represents the Box layout that houses the dynamic menu
 	
 	def fetch_airtable_data(self):
+		 # Height and any other dimension attributes for sandbox
+		 # must (higly recommended) be defined here given that .kv code superceed and 
+		 # .py attribute definitions override
+		self.sandbox.minimum_height= 100
+
 		# Essential to clear the Sanbox of the previous menu
 		self.sandbox.remove_widget(airtable_content)
 		
