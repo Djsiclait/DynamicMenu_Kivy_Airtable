@@ -29,18 +29,21 @@ def fill_menu_with_data():
 	for i in range(1, 5):
 		tab = TabbedPanelHeader(text='Tab ' + str(i))
 
-		test = BoxLayout()
-		test.orientation = "vertical"
-		#test.minimum_height = 100
-		test.padding = 10
-		test.spacing = 10
-		test.add_widget(Label(text="Hello " + str(i),size_hint=(.5,.5)))
-		test.add_widget(Button(text="Hello " + str(i),size_hint=(.5,.5)))
-		
-		tab.content = test
+		tab.content = format_airtable_data(i)
 		tab.content.minimum_height= 100
 		
 		airtable_content.add_widget(tab)
+
+def format_airtable_data(num):
+		formated_data = BoxLayout() # container for converted air table data
+		formated_data.orientation = "vertical"
+		formated_data.padding = 10
+		formated_data.spacing = 10
+		formated_data.add_widget(Label(text="Hello " + str(num),size_hint=(.7,.5)))
+		formated_data.add_widget(Button(text="Hello " + str(num),size_hint=(.7,.5)))
+
+		return formated_data
+		
 
 # Class containing all objects and functions of the UI
 class Resonance(BoxLayout):
