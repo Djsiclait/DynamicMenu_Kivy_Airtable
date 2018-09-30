@@ -4,6 +4,7 @@ Resonance:
 
 <Resonance>:
 	orientation: "vertical"
+	sandbox: sandbox_boxlayout
 	canvas:
 		Color: 
 			rgba: 0.376, 0.420, 0.420, 0.9
@@ -42,7 +43,7 @@ Resonance:
 
 			Label:
 				color: 1, 1, 1, 1
-				text: "Welcome to Resonance Manufacturing LTD --- Do Something Fucking Big"
+				text: "Welcome to Resonance Manufacturing LTD --- Do Something Fucking Big!"
 			
 		BoxLayout:
 			orientation: "horizontal"
@@ -62,17 +63,19 @@ Resonance:
 				spacing : 10 
 				height: 30 
 				width: 200
-				canvas:
+				canvas: 
 					Color: 
 						rgba: 0.317, 0.8, 0.9, .5
 					Rectangle:
 						pos: self.pos
 						size: self.size
 				text: "Fetch Updated Airtable Data"
+				on_press: root.fetch_airtable_data()
 
 		BoxLayout:
+			id: sandbox_boxlayout
 			orientation: "horizontal"
 			size_hint_y: None
 			spacing : 10 
 			height: 40
-
+ 
