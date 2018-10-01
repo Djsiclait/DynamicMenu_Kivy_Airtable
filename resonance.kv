@@ -5,6 +5,8 @@ Resonance:
 <Resonance>:
 	orientation: "vertical"
 	sandbox: sandbox_boxlayout
+	size: self.size
+
 	canvas:
 		Color: 
 			rgba: 0.376, 0.420, 0.420, 0.9
@@ -14,6 +16,7 @@ Resonance:
 
 	GridLayout:
 		rows: 3	
+		size: self.size
 
 		BoxLayout:
 			orientation: "horizontal"
@@ -74,7 +77,6 @@ Resonance:
 
 		BoxLayout:
 			id: sandbox_boxlayout
-			orientation: "horizontal"
-			size_hint_y: None
+			size: self.size
 			spacing : 10
  
