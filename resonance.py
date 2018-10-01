@@ -15,6 +15,8 @@ from kivy.uix.tabbedpanel import TabbedPanelHeader
 from kivy.uix.tabbedpanel import TabbedPanelItem
 from kivy.properties import ObjectProperty
 
+from functools import partial
+
 # Variables
 tab_headers = []
 tab_menus = []
@@ -124,9 +126,7 @@ def fill_menu_with_data():
 		
 		airtable_content.add_widget(tab)
 
-
-def open_link(url):
-	webbrowser.open(url)	
+	
 
 def format_airtable_data(header):
 		formated_data = GridLayout(cols=1, spacing=10, size_hint_y=None) # container for converted air table data
@@ -149,26 +149,36 @@ def format_airtable_data(header):
 					print(link)
 					url_name = str(link).split('!')[0]	
 					url = str(link).split('!')[1]
-					#print(url_name + "---" + url)
-					button = Button(text=url_name, size_hint=(.7,.5))
-					#print("Ping 1!")
-					#button.bind(on_press=open_link(url))
-					#print("Ping 2!")
+					print(url_name + "---" + url)
+					if  url_name != "N/A":
+						button = Button(text=url_name, size_hint=(None, None))
+					else:
+						button = Button(text="Unknown Link", size_hint=(None, None))
+
+					button.width = 250
+					button.height = 50
+					print("Ping 1!")
+					button.bind(on_press=lambda x:Resonance().open_link(url))
+					#button.bind(on_press=partial(Resonance().test, 'Bitch!'))
+					print("Ping 2!")
 					formated_data.add_widget(button)
 					formated_data.add_widget(Label())
 					formated_data.add_widget(Label())
-					#print("Ping 3!")
+					print("Ping 3!")
 
 		#formated_data.add_widget(Button(text="Link " + str(num),size_hint=(.7,.5), on_press=open_link))
 
 		return formated_data
 
-		
-
 # Class containing all objects and functions of the UI
 class Resonance(BoxLayout):
 	sandbox = ObjectProperty() # represents the Box layout that houses the dynamic menu
 	
+	def open_link(self, url):
+		print("It got in")
+		webbrowser.open(url)
+		print("Other Button works!")
+
 	def present_airtable_data(self):
 		# Height and any other dimension attributes for sandbox
 		# must (higly recommended) be defined here given that .kv code superceed and 
