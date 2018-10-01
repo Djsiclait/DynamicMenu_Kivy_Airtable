@@ -105,7 +105,8 @@ def fill_menu_with_data():
 
 		scroll = ScrollView()
 		scroll.bar_margin = 10
-		#scroll.size_hint = (1, 0.1)
+		scroll.size_hint = (1, 1)
+		#scroll.size = (1, 1)
 		#scroll.pos_hint = (1, 1)
 		scroll.scroll_type = ['bars', 'content']
 		scroll.bar_pos_y = 'left'
@@ -126,30 +127,30 @@ def fill_menu_with_data():
 		
 		airtable_content.add_widget(tab)
 
-	
-
 def format_airtable_data(header):
 		formated_data = GridLayout(cols=1, spacing=10, size_hint_y=None) # container for converted air table data
 		formated_data.orientation = "vertical"
 		formated_data.padding = 10
-		formated_data.spacing = 20
+		formated_data.row_default_height = 1
 		#formated_data.minimum_height = 1000
 		#formated_data.minimum_width = 250
-
+		rows = 0
 		for item in tab_menus:
 			if item["id"] == header:
 				if str(item["menu"]) != "N/A":
 					formated_data.add_widget(Label(text=item["menu"],size_hint=(.7,.5)))
 					formated_data.add_widget(Label())
+					rows += 2
 				else:
 					formated_data.add_widget(Label(text="Menu name pending",size_hint=(.7,.5)))
 					formated_data.add_widget(Label())
+					rows += 2
 
 				for link in item["link"]:
-					print(link)
+					#print(link)
 					url_name = str(link).split('!')[0]	
 					url = str(link).split('!')[1]
-					print(url_name + "---" + url)
+					#print(url_name + "---" + url)
 					if  url_name != "N/A":
 						button = Button(text=url_name, size_hint=(None, None))
 					else:
@@ -157,15 +158,16 @@ def format_airtable_data(header):
 
 					button.width = 250
 					button.height = 50
-					print("Ping 1!")
+					#print("Ping 1!")
 					button.bind(on_press=lambda x:Resonance().open_link(url))
 					#button.bind(on_press=partial(Resonance().test, 'Bitch!'))
-					print("Ping 2!")
+					#print("Ping 2!")
 					formated_data.add_widget(button)
 					formated_data.add_widget(Label())
-					formated_data.add_widget(Label())
-					print("Ping 3!")
+					rows += 2
+					#print("Ping 3!")
 
+		formated_data.height = rows * 50
 		#formated_data.add_widget(Button(text="Link " + str(num),size_hint=(.7,.5), on_press=open_link))
 
 		return formated_data
