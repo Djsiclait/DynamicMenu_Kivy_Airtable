@@ -88,7 +88,7 @@ def fill_menu_with_data():
 	airtable_content.do_default_tab = False
 	airtable_content.background_color = (0, 0, 1, .5) #50% translucent
 	airtable_content.tab_width = 150
-	#airtable_content.minimum_height = 500
+	#airtable_content.minimum_height = 1000
 	#airtable_content.minimum_width = 500
 
 	# Trigger airtable connection and data retrieval
@@ -103,17 +103,24 @@ def fill_menu_with_data():
 
 		scroll = ScrollView()
 		scroll.bar_margin = 10
+		#scroll.size_hint = (1, 0.1)
+		#scroll.pos_hint = (1, 1)
+		scroll.scroll_type = ['bars', 'content']
 		scroll.bar_pos_y = 'left'
-		scroll.bar_width = 4
+		scroll.bar_width = 20
+		scroll.bar_color = (5, 10, 15, 0.8)
+		scroll.bar_inactive_color = (5, 20, 15, 0.8)
 		scroll.do_scroll_y = True
+		scroll.do_scroll_x = False
+		scroll.scroll_y = 1
+		#scroll.minimun_height = 400
 		scroll.add_widget(format_airtable_data(header))
-		#scroll.minimum_height = 500
 
 		tab.content = scroll
 		#tab.content = format_airtable_data(header)
 		tab.content.orientation = "vertical"
-		tab.content.minimum_height = 500
-		tab.content.minimum_width = 500
+		#tab.content.minimum_height = 1000
+		#tab.content.minimum_width = 500
 		
 		airtable_content.add_widget(tab)
 
@@ -126,7 +133,7 @@ def format_airtable_data(header):
 		formated_data.orientation = "vertical"
 		formated_data.padding = 10
 		formated_data.spacing = 20
-		#formated_data.minimum_height = 500
+		#formated_data.minimum_height = 1000
 		#formated_data.minimum_width = 250
 
 		for item in tab_menus:
@@ -163,9 +170,9 @@ class Resonance(BoxLayout):
 	sandbox = ObjectProperty() # represents the Box layout that houses the dynamic menu
 	
 	def present_airtable_data(self):
-		 # Height and any other dimension attributes for sandbox
-		 # must (higly recommended) be defined here given that .kv code superceed and 
-		 # .py attribute definitions override
+		# Height and any other dimension attributes for sandbox
+		# must (higly recommended) be defined here given that .kv code superceed and 
+		# .py attribute definitions override
 		#self.sandbox.minimum_height = 500
 		#self.sandbox.minimum_width = 500
 		#self.sandbox.size_hint_y =0.5
