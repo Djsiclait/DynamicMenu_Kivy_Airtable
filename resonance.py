@@ -1,3 +1,4 @@
+import airtable
 import webbrowser
 import kivy
 kivy.require("1.10.0")
@@ -11,6 +12,15 @@ from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.tabbedpanel import TabbedPanelHeader 
 from kivy.uix.tabbedpanel import TabbedPanelItem
 from kivy.properties import ObjectProperty
+
+# Variables
+tab_headers = []
+tab_menus = []
+
+# Airtable API variable that connects to and fetches databases
+connection = airtable.Airtable(base_key='appdqzfZoeTcXC7VD', 
+	table_name='Config', 
+	api_key='keyeNCirYgYK9YhOd')
 
 # Proxy class to validate the existance the dynamic menu with both .py and .kv files
 # No code is necessary within this context
